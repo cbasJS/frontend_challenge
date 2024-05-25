@@ -6,4 +6,9 @@ export class MongoUserDatasource implements UserDataSource {
   async saveUser(user: UserEntity): Promise<void> {
     await UserModel.create(user);
   }
+
+  async getUser(mail: string): Promise<UserEntity | null> {
+    const user = (await UserModel.findOne({ mail })) as UserEntity | null;
+    return user;
+  }
 }
