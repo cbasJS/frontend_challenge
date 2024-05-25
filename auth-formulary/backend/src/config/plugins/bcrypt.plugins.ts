@@ -8,3 +8,11 @@ export const cryptPassword: (password: string) => Promise<string> = async (
   const hash = await bcrypt.hash(password, salt);
   return hash;
 };
+
+export const validateCryptPassword: (
+  plainTextPassword: string,
+  hashPassword: string
+) => Promise<Boolean> = async (plainTextPassword, hashPassword) => {
+  const isValid = await bcrypt.compareSync(plainTextPassword, hashPassword);
+  return isValid;
+};
