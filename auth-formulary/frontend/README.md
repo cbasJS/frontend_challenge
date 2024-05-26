@@ -1,6 +1,6 @@
 # Finsphera challange - auth formulary frontend
 
-This is the front end that is part of the challenge for creating the authentication form based on hexagonal architecture.
+This is the front end that is part of the challenge for creating the authentication form based on clean architecture.
 
 The front end has a sign up and user login form.
 
