@@ -8,4 +8,8 @@ export class UserRepositoryImpl implements UserRepository {
   async saveUser(user: UserEntity): Promise<void> {
     return this.userDatasource.saveUser(user);
   }
+
+  async getUser(mail: string): Promise<UserEntity | null> {
+    return this.userDatasource.getUser(mail);
+  }
 }

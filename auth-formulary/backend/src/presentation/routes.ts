@@ -6,6 +6,7 @@ export class AppRoutes {
     const router = Router();
 
     router.use("/api/sign-up", UserRoutes.routes);
+    router.use("/api/login", UserRoutes.routes);
 
     return router;
   }

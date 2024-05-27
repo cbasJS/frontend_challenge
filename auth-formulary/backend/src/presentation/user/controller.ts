@@ -1,10 +1,58 @@
 import { Request, Response } from "express";
 import { UserModel } from "../../data/mongo";
-import { cryptPassword } from "../../config/plugins/bcrypt.plugins";
+import {
+  cryptPassword,
+  validateCryptPassword,
+} from "../../config/plugins/bcrypt.plugins";
+import { UserRepositoryImpl } from "../../infrastructure/repositories/user.repository.impl";
+import { MongoUserDatasource } from "../../infrastructure/datasources/mongo-user.datasource";
+import { generateJWT } from "../../config/plugins/jsonwebtoken.plugin";
 
 export class UserController {
   //* DI
   constructor() {}
+
+  public getUser = async (req: Request, res: Response) => {
+    const password = req.body.password as string | undefined;
+    const mail = req.body.mail as string | undefined;
+
+    if (password && mail) {
+      const userRepository = new UserRepositoryImpl(new MongoUserDatasource());
+      const user = await userRepository.getUser(mail);
+
+      if (user) {
+        if (await validateCryptPassword(password, user.password)) {
+          const token = await generateJWT(user.mail);
+          return res.json({
+            status: "ok",
+            message: "Se ha iniciado sesión correctamente",
+            data: {
+              mail: user.mail,
+              createdAt: user.createdAt,
+              userName: user.userName,
+              token,
+            },
+          });
+        } else {
+          return res.json({
+            status: "ok",
+            message: "El correo o contraseña es invalida",
+            data: null,
+          });
+        }
+      } else {
+        return res.json({
+          status: "ok",
+          message: "El correo o contraseña es invalida",
+          data: null,
+        });
+      }
+    } else {
+      return res
+        .status(404)
+        .json({ error: "Correo electronico y contraseña son requeridos" });
+    }
+  };
 
   public createUser = async (req: Request, res: Response) => {
     const { mail, userName, password } = req.body;
