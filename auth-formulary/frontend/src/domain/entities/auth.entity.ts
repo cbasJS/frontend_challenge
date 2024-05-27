@@ -1,4 +1,4 @@
-export type FieldName = "mail" | "username" | "password" | "repeatPassword";
+export type RegisterFieldName = "mail" | "username" | "password" | "repeatPassword";
 export type RegisterFormData = {
   mail: string;
   username: string;
@@ -7,5 +7,15 @@ export type RegisterFormData = {
   errorMsg: string;
   submitButtonDisable: boolean
   onSubmit: React.FormEventHandler<HTMLFormElement>
-  setInputValue: (nameOfField: FieldName, value: string) => void;
+  setInputValue: (nameOfField: RegisterFieldName, value: string) => void;
+}
+
+export type LoginFieldName = "mail" | "password"
+export type LoginFormData = {
+  mail: string;
+  password: string;
+  errorMsg: string;
+  submitButtonDisable: boolean
+  onSubmit: React.FormEventHandler<HTMLFormElement>
+  setInputValue: (nameOfField: LoginFieldName, value: string) => void;
 }
