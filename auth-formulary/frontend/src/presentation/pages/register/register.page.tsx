@@ -3,11 +3,13 @@ import DialogAccountCreated from "../../components/dialog/accountCreated.compone
 import { useNavigate } from "react-router-dom";
 import useRegisterForm from "../../hooks/register.hook";
 import { useState } from "react";
+import useAuthSignUp from "../../hooks/react-query/authSignUp.hook";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const data = useRegisterForm(setIsDialogOpen);
+  const { mutate, isPending, errorMsg } = useAuthSignUp(setIsDialogOpen);
+  const data = useRegisterForm(mutate);
 
   const handleCloseDialog = () => {
     setIsDialogOpen(false);
@@ -16,7 +18,11 @@ const RegisterPage = () => {
 
   return (
     <>
-      <RegisterForm {...data} />
+      <RegisterForm
+        {...data}
+        isSubmitPending={isPending}
+        errorMsg={errorMsg || data.errorMsg}
+      />
       <DialogAccountCreated isOpen={isDialogOpen} close={handleCloseDialog} />
     </>
   );

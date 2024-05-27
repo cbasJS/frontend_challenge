@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
 import LayoutAuthForm from "./layout.component";
 import { RegisterFormData } from "../../../domain/entities/auth.entity";
+import Spinner from "../spinner/spinner.component";
 
-type Props = RegisterFormData;
+type Props = {
+  isSubmitPending: boolean;
+} & RegisterFormData;
 
 const RegisterForm: React.FC<Props> = ({
   setInputValue,
   errorMsg,
   submitButtonDisable,
   onSubmit,
+  isSubmitPending,
   ...data
 }) => {
   return (
@@ -109,9 +113,14 @@ const RegisterForm: React.FC<Props> = ({
           <button
             className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-40 disabled:cursor-not-allowed"
             type="submit"
-            disabled={submitButtonDisable}
+            disabled={submitButtonDisable || isSubmitPending}
           >
             Crear
+            {isSubmitPending && (
+              <span className="ml-2">
+                <Spinner />
+              </span>
+            )}
           </button>
         </div>
       </form>
