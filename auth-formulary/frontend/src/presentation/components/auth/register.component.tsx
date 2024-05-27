@@ -19,7 +19,7 @@ const RegisterForm: React.FC<Props> = ({
             className="block text-sm font-medium leading-6 text-gray-900"
             htmlFor="email"
           >
-            Correo electronico
+            Correo electronico <span className="text-red-500">*</span>
           </label>
           <div className="mt-2">
             <input
@@ -40,7 +40,7 @@ const RegisterForm: React.FC<Props> = ({
             className="block text-sm font-medium leading-6 text-gray-900"
             htmlFor="username"
           >
-            Username
+            Username <span className="text-red-500">*</span>
           </label>
           <div className="mt-2">
             <input
@@ -62,7 +62,7 @@ const RegisterForm: React.FC<Props> = ({
               className="block text-sm font-medium leading-6 text-gray-900"
               htmlFor="password"
             >
-              Contraseña
+              Contraseña <span className="text-red-500">*</span>
             </label>
           </div>
           <div className="mt-2">
@@ -84,7 +84,7 @@ const RegisterForm: React.FC<Props> = ({
               className="block text-sm font-medium leading-6 text-gray-900"
               htmlFor="repeat-password"
             >
-              Confirmar contraseña
+              Confirmar contraseña <span className="text-red-500">*</span>
             </label>
           </div>
           <div className="mt-2">

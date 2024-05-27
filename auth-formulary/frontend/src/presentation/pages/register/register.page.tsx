@@ -6,8 +6,8 @@ import { useState } from "react";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
-  const [isDialogOpen, setIsDialogOpen] = useState(true);
-  const { ...data } = useRegisterForm(setIsDialogOpen);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const data = useRegisterForm(setIsDialogOpen);
 
   const handleCloseDialog = () => {
     setIsDialogOpen(false);
