@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { FieldName, RegisterFormData } from "../../domain/entities/auth.entity";
+import {
+  RegisterFieldName,
+  RegisterFormData,
+} from "../../domain/entities/auth.entity";
 import { validateEmail } from "../../application/utils/form.util";
 
 type ReturnProps = {} & RegisterFormData;
@@ -21,11 +24,12 @@ const useRegisterForm = (
     repeatPassword: (value: string) => setRepeatPassword(value),
   };
 
-  const setInputValue = (nameOfField: FieldName, value: string) => {
+  const setInputValue = (nameOfField: RegisterFieldName, value: string) => {
     setValueObject[nameOfField](value);
   };
 
   const validFields = () => {
+    setErrorMsg("");
     if (!mail) {
       return false;
     } else if (!validateEmail(mail)) {
@@ -41,7 +45,6 @@ const useRegisterForm = (
       setErrorMsg("Las contraseñas no coinciden");
       return false;
     }
-    setErrorMsg("");
     return true;
   };
 
