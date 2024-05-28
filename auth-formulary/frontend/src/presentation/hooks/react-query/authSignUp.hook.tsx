@@ -24,7 +24,9 @@ const useAuthSignUp = (
     }
 
     if (isError) {
+      // @ts-ignore
       if (error.response.data) {
+        // @ts-ignore
         const { error: errorMessage } = error.response.data;
         if (errorMessage) {
           setErrorMsg(errorMessage);
