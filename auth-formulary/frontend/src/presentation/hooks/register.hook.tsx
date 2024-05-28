@@ -4,11 +4,19 @@ import {
   RegisterFormData,
 } from "../../domain/entities/auth.entity";
 import { validateEmail } from "../../application/utils/form.util";
+import type { UseMutateFunction } from "@tanstack/react-query";
+import type { AxiosResponse } from "axios";
+import type { UserAPIBody } from "../../domain/entities/user.entity";
 
 type ReturnProps = {} & RegisterFormData;
 
 const useRegisterForm = (
-  setIsDialogOpen: React.Dispatch<React.SetStateAction<boolean>>
+  mutate: UseMutateFunction<
+    AxiosResponse<any, any>,
+    Error,
+    UserAPIBody,
+    unknown
+  >
 ): ReturnProps => {
   const [mail, setMail] = useState("");
   const [username, setUsername] = useState("");
@@ -51,7 +59,7 @@ const useRegisterForm = (
   const onSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     if (!submitButtonDisable) {
-      setIsDialogOpen(true);
+      await mutate({ mail, userName: username, password });
     }
   };
 

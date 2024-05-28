@@ -1,14 +1,19 @@
 import { Link } from "react-router-dom";
 import LayoutAuthForm from "./layout.component";
 import { LoginFormData } from "../../../domain/entities/auth.entity";
+import Spinner from "../spinner/spinner.component";
 
-type Props = {} & LoginFormData;
+type Props = {
+  onSubmit: React.FormEventHandler<HTMLFormElement>;
+  isSubmitPending: boolean;
+} & LoginFormData;
 
 const LoginForm: React.FC<Props> = ({
   onSubmit,
   submitButtonDisable,
   errorMsg,
   setInputValue,
+  isSubmitPending,
   ...data
 }) => {
   return (
@@ -64,9 +69,14 @@ const LoginForm: React.FC<Props> = ({
           <button
             className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-40 disabled:cursor-not-allowed"
             type="submit"
-            disabled={submitButtonDisable}
+            disabled={submitButtonDisable || isSubmitPending}
           >
-            Entrar
+            Entrar{" "}
+            {isSubmitPending && (
+              <span className="ml-2">
+                <Spinner />
+              </span>
+            )}
           </button>
         </div>
       </form>

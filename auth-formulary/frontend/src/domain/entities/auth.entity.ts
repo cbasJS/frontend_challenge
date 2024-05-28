@@ -16,6 +16,5 @@ export type LoginFormData = {
   password: string;
   errorMsg: string;
   submitButtonDisable: boolean
-  onSubmit: React.FormEventHandler<HTMLFormElement>
   setInputValue: (nameOfField: LoginFieldName, value: string) => void;
 }
