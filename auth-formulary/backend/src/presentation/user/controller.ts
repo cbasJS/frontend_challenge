@@ -13,8 +13,8 @@ export class UserController {
   constructor() {}
 
   public getUser = async (req: Request, res: Response) => {
-    const password = req.body.password as string | undefined;
-    const mail = req.body.mail as string | undefined;
+    const password = req.query.password as string | undefined;
+    const mail = req.query.mail as string | undefined;
 
     if (password && mail) {
       const userRepository = new UserRepositoryImpl(new MongoUserDatasource());
