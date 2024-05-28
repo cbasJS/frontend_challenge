@@ -1,6 +1,6 @@
 # Finsphera challange - auth formulary frontend
 
-This is the front end that is part of the challenge for creating the authentication form based on clean architecture.
+This is the front end that is part of the challenge for creating the authentication form based on [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
 
 The front end has a sign up and user login form.
 

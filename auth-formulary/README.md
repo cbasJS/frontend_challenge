@@ -1,8 +1,10 @@
 # Auth formulary APP
 
-Esta es una pequeña muestra de desarrollo de un flujo de login mediante una aplicacion web.
+This is a small sample of developing a login flow through a web application.
 
-La aplicacion fue totalmente desarrollada mienta el MERN Stack. El proposito de este desarrollo es para demostrar mi amplio conocimiento en el desarrollo web (frontend y backend).
+The application was fully developed using the [MERN Stack](https://www.mongodb.com/resources/languages/mern-stack). The purpose of this development is to demonstrate my extensive knowledge in web development (frontend and backend).
+
+In addition, the entire project was developed under [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) and [SOLID principles](https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design) for better management at the code level and to be able to scale the app in a simple way.
 
 ## Where is deployed?
 
