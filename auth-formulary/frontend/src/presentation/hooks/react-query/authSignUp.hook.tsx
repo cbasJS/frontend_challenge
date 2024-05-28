@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { UserAPIBody } from "../../../domain/entities/user.entity";
 import { useEffect, useState } from "react";
+import { ERROR_SERVER_MSG } from "../../../application/constants/copies.constant";
 
 const useAuthSignUp = (
   setIsDialogOpen: React.Dispatch<React.SetStateAction<boolean>>
@@ -18,9 +19,7 @@ const useAuthSignUp = (
       if (data.data.status === "ok") {
         setIsDialogOpen(true);
       } else {
-        setErrorMsg(
-          "Ha ocurrido un error inesperado. Consulta con el equipo de soporte para mas informacion."
-        );
+        setErrorMsg(ERROR_SERVER_MSG);
       }
     }
 
@@ -30,14 +29,10 @@ const useAuthSignUp = (
         if (errorMessage) {
           setErrorMsg(errorMessage);
         } else {
-          setErrorMsg(
-            "Ha ocurrido un error inesperado. Consulta con el equipo de soporte para mas informacion."
-          );
+          setErrorMsg(ERROR_SERVER_MSG);
         }
       } else {
-        setErrorMsg(
-          "Ha ocurrido un error inesperado. Consulta con el equipo de soporte para mas informacion."
-        );
+        setErrorMsg(ERROR_SERVER_MSG);
       }
     }
   }, [isSuccess, data, isError, error]);
