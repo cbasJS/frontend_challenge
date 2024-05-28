@@ -3,10 +3,13 @@ import { useEffect, useState } from "react";
 import { getUserCallback } from "../../../infrastructure/api/auth/login.api";
 import { ERROR_SERVER_MSG } from "../../../application/constants/copies.constant";
 import { useNavigate } from "react-router-dom";
+import { useLocalStorage } from "@uidotdev/usehooks";
+import { UserAPIData } from "../../../domain/entities/user.entity";
 
 const useAuthLogin = (mail: string, password: string) => {
   const navigate = useNavigate();
   const [errorMsg, setErrorMsg] = useState("");
+  const [user, setUser] = useLocalStorage<UserAPIData | null>("user", null);
 
   const {
     data: response,
@@ -25,6 +28,7 @@ const useAuthLogin = (mail: string, password: string) => {
     if (isSuccess) {
       if (response.status === "ok") {
         if (response.data) {
+          setUser(response.data);
           navigate("/");
         } else {
           setErrorMsg(response.message);
@@ -38,7 +42,7 @@ const useAuthLogin = (mail: string, password: string) => {
       console.error(error);
       setErrorMsg(ERROR_SERVER_MSG);
     }
-  }, [isSuccess, response, isError, error]);
+  }, [isSuccess, response, isError, error, user]);
 
   return {
     response,
