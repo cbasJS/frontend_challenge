@@ -35,13 +35,6 @@ const useLoginForm = (): ReturnProps => {
     return true;
   };
 
-  const onSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault();
-    if (!submitButtonDisable) {
-      console.log("success");
-    }
-  };
-
   useEffect(() => {
     if (validFields()) {
       setSubmitButtonDisable(false);
@@ -55,7 +48,6 @@ const useLoginForm = (): ReturnProps => {
     password,
     errorMsg,
     submitButtonDisable,
-    onSubmit,
     setInputValue,
   };
 };
