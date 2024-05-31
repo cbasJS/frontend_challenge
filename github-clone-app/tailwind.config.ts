@@ -14,6 +14,24 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
+    colors: {
+      'icon-dark-color': 'rgb(230, 237, 243)',
+      'border-color': 'rgb(208, 215, 222)',
+      'border-color-dark': 'rgb(48, 54, 61)'
+    },
+    backgroundColor: {
+      'header-color': 'rgb(246, 248, 250)',
+      'header-color-dark': 'rgb(1, 4, 9)',
+      'dialog-color': {
+        DEFAULT: 'rgba(140, 149, 159, 0.2)',
+        'dark': 'rgb(22, 27, 34)',
+        'semi-transparent': 'rgba(22, 27, 34, 0.4)'
+      },
+
+      'dialog-color-dark': 'rgb(22, 27, 34)',
+      'white': 'rgb(255, 255, 255)',
+      'dialog-element-selected': 'rgba(208, 215, 222, 0.2)'
+    }
   },
   plugins: [],
 };
