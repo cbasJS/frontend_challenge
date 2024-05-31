@@ -1,8 +1,8 @@
-// import getRepositories from "@/infrastructure/api/github.api";
+import getRepositories from "@/infrastructure/api/github.api";
 import RepositoriesTypeDialog from "@/presentation/components/dialog/repositoriesType.dialog";
 // import RepositoryList from "@/presentation/components/repositories/list.component";
 import { useAppStore } from "@/presentation/hooks/appStore.hook";
-// import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
 import { useEffect } from "react";
 import Router from "next/router";
@@ -20,15 +20,17 @@ const Sidebar = dynamic(
 export default function Page() {
   const { repositoryType } = useAppStore((state) => state);
 
-  // const { refetch } = useQuery({
-  //   queryFn: async () => await getRepositories({ type: repositoryType }),
-  //   queryKey: ["repositories"],
-  // });
+  const { refetch, data } = useQuery({
+    queryFn: async () => await getRepositories({ type: repositoryType }),
+    queryKey: ["repositories"],
+  });
 
   useEffect(() => {
     Router.push("/", { query: { type: repositoryType } });
-    // refetch();
-  }, [repositoryType]);
+    refetch();
+  }, [repositoryType, refetch]);
+
+  console.log(data);
 
   return (
     <>
