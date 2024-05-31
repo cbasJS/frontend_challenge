@@ -1,5 +1,7 @@
 import { AppState } from "@/domain/entities/store.entity"
+import { urlTypeParams } from "../utils/general.util"
+
 
 export const initAppStore = (): AppState => {
-  return { count: new Date().getFullYear() }
+  return { repositoryType: urlTypeParams(), isRepositoriesTypeDialogOpen: false }
 }

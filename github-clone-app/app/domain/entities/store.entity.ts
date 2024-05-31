@@ -1,12 +1,15 @@
 import type { ReactNode } from "react"
+import { RepositoryTypeString } from "../enums/githubApi.enum"
 
 export type AppState = {
-  count: number
+  repositoryType: RepositoryTypeString
+  isRepositoriesTypeDialogOpen: boolean
 }
 
 export type AppActions = {
-  decrementCount: () => void
-  incrementCount: () => void
+  changeRepositoryType: (type: RepositoryTypeString) => void
+  openRepositoriesTypeDialog: () => void
+  closeRepositoriesTypeDialog: () => void
 }
 
 export interface AppStoreProviderProps {
