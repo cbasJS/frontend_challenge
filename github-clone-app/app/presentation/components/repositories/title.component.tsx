@@ -7,7 +7,7 @@ const RepositoryTitle = () => {
 
   return (
     <div
-      className="flex items-center gap-x-2 md:hidden"
+      className="flex items-center gap-x-2 md:hidden mt-4"
       onClick={openRepositoriesTypeDialog}
     >
       <h1 className="font-bold text-lg capitalize">
