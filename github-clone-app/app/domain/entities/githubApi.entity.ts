@@ -1,13 +1,16 @@
-type GithubRepositorySpecs = {
+export type GithubRepositorySpecs = {
   license: string | null
   language: {
     name: string
     color: string | null
-  }
+  } | null
   forks: string
   starts: string
   issues: string
-  updatedAt: string
+  updatedAt: {
+    large: string
+    short: string
+  }
 }
 
 export interface GithubRepository {

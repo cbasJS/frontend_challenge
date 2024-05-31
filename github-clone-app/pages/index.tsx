@@ -1,44 +1,37 @@
 import getRepositories from "@/infrastructure/api/github.api";
 import RepositoriesTypeDialog from "@/presentation/components/dialog/repositoriesType.dialog";
-// import RepositoryList from "@/presentation/components/repositories/list.component";
 import { useAppStore } from "@/presentation/hooks/appStore.hook";
-import { useQuery } from "@tanstack/react-query";
-import dynamic from "next/dynamic";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 import Router from "next/router";
-
-const RepositoryTitle = dynamic(
-  () => import("@/presentation/components/repositories/title.component"),
-  { ssr: false }
-);
-
-const Sidebar = dynamic(
-  () => import("@/presentation/components/sidebar/sidebar.component"),
-  { ssr: false }
-);
+import {
+  RepositoriesList,
+  RepositoryTitle,
+  Sidebar,
+} from "@/presentation/components/withoutSSR/noSSR.component";
 
 export default function Page() {
   const { repositoryType } = useAppStore((state) => state);
+  const queryClient = useQueryClient();
 
-  const { refetch, data } = useQuery({
+  const { refetch, data, isLoading, isFetching } = useQuery({
     queryFn: async () => await getRepositories({ type: repositoryType }),
     queryKey: ["repositories"],
   });
 
   useEffect(() => {
     Router.push("/", { query: { type: repositoryType } });
+    queryClient.clear();
     refetch();
-  }, [repositoryType, refetch]);
-
-  console.log(data);
+  }, [repositoryType, refetch, queryClient]);
 
   return (
     <>
       <div className="px-4">
         <RepositoryTitle />
-        <div className="grid grid-cols-2">
+        <div className="md:flex">
           <Sidebar />
-          {/* <RepositoryList /> */}
+          <RepositoriesList data={data} loading={isLoading || isFetching} />
         </div>
       </div>
       <RepositoriesTypeDialog />

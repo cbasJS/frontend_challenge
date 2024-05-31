@@ -15,13 +15,41 @@ export const nFormatter = (num: number, digits: number = 0): string => {
   return item ? (num / item.value).toFixed(digits).replace(regexp, "").concat(item.symbol) : "0";
 }
 
-export const diffMins = (dateToCompare: string): string => {
+export const calculateDate = (dateToCompare: string): { large: string, short: string } => {
   const localDate = new Date()
   const compareDate = new Date(dateToCompare)
   const diffMs = Math.abs(compareDate.getTime() - localDate.getTime())
-  const minutes = Math.floor((diffMs / 1000) / 60);
 
-  return `Updated ${minutes} minutes ago`
+  const oneMinute = 1000 * 60;
+  const oneHour = oneMinute * 60;
+  const oneDay = oneHour * 24;
+  const oneWeek = oneDay * 7;
+
+  if (diffMs >= oneWeek) {
+    const weeks = Math.floor(diffMs / oneWeek);
+    return {
+      large: `Updated ${weeks} week${weeks > 1 ? 's' : ''} ago`,
+      short: `${weeks}w`
+    };
+  } else if (diffMs >= oneDay) {
+    const days = Math.floor(diffMs / oneDay);
+    return {
+      large: `Updated ${days} day${days > 1 ? 's' : ''} ago`,
+      short: `${days}d`
+    };
+  } else if (diffMs >= oneHour) {
+    const hours = Math.floor(diffMs / oneHour);
+    return {
+      large: `Updated ${hours} hour${hours > 1 ? 's' : ''} ago`,
+      short: `${hours}h`
+    }
+  } else {
+    const minutes = Math.floor(diffMs / oneMinute);
+    return {
+      large: `Updated ${minutes} minute${minutes > 1 ? 's' : ''} ago`,
+      short: `${minutes}m`
+    };
+  }
 }
 
 export const urlTypeParams = (): RepositoryTypeString => {
