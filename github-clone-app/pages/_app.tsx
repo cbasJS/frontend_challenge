@@ -1,13 +1,11 @@
 import type { AppProps } from "next/app";
-import { Inter } from "next/font/google";
 import { AppStoreProvider } from "@/application/providers/store.provider";
-import "../app/globals.css";
 import ReactQueryProvider from "@/application/providers/reactQuery.provider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Head from "next/head";
+import Layout from "@/presentation/components/layout/layout.component";
 
-// If loading a variable font, you don't need to specify the font weight
-const inter = Inter({ subsets: ["latin"] });
+import "../app/globals.css";
 
 type Props = {
   children: React.ReactNode;
@@ -17,7 +15,7 @@ const Wrapped: React.FC<Props> = ({ children }) => {
   return (
     <ReactQueryProvider>
       <AppStoreProvider>
-        <main className={inter.className}>{children}</main>
+        <Layout>{children}</Layout>
       </AppStoreProvider>
       <ReactQueryDevtools initialIsOpen={false} position="bottom" />
     </ReactQueryProvider>
