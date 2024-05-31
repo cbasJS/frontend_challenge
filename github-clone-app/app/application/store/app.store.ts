@@ -1,4 +1,3 @@
-// src/stores/counter-store.ts
 import { createStore } from 'zustand/vanilla'
 import { defaultInitState } from './initState.store'
 import { AppState, AppStore } from '@/domain/entities/store.entity'
@@ -9,7 +8,8 @@ export const createAppStore = (
 ) => {
   return createStore<AppStore>()((set) => ({
     ...initState,
-    decrementCount: () => set((state) => ({ count: state.count - 1 })),
-    incrementCount: () => set((state) => ({ count: state.count + 1 })),
+    changeRepositoryType: (type) => set(() => ({ repositoryType: type })),
+    openRepositoriesTypeDialog: () => set(() => ({ isRepositoriesTypeDialogOpen: true })),
+    closeRepositoriesTypeDialog: () => set(() => ({ isRepositoriesTypeDialogOpen: false })),
   }))
 }
