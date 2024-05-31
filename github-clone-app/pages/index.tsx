@@ -1,35 +1,45 @@
-// import Image from "next/image";
-
-import getRepositories from "@/infrastructure/api/github.api";
+// import getRepositories from "@/infrastructure/api/github.api";
+import RepositoriesTypeDialog from "@/presentation/components/dialog/repositoriesType.dialog";
+// import RepositoryList from "@/presentation/components/repositories/list.component";
 import { useAppStore } from "@/presentation/hooks/appStore.hook";
-import { useQuery } from "@tanstack/react-query";
+// import { useQuery } from "@tanstack/react-query";
+import dynamic from "next/dynamic";
+import { useEffect } from "react";
+import Router from "next/router";
+
+const RepositoryTitle = dynamic(
+  () => import("@/presentation/components/repositories/title.component"),
+  { ssr: false }
+);
+
+const Sidebar = dynamic(
+  () => import("@/presentation/components/sidebar/sidebar.component"),
+  { ssr: false }
+);
 
 export default function Page() {
-  const { count, incrementCount, decrementCount } = useAppStore(
-    (state) => state
-  );
+  const { repositoryType } = useAppStore((state) => state);
 
-  const { data, isLoading, isError } = useQuery({
-    queryFn: async () => await getRepositories(),
-    queryKey: ["repositories"],
-  });
+  // const { refetch } = useQuery({
+  //   queryFn: async () => await getRepositories({ type: repositoryType }),
+  //   queryKey: ["repositories"],
+  // });
 
-  console.log(data);
+  useEffect(() => {
+    Router.push("/", { query: { type: repositoryType } });
+    // refetch();
+  }, [repositoryType]);
 
   return (
-    <div>
-      <h1 className="mb-10">Finsphera challange github clone app</h1>
-      <div>
-        <span>Count state with Zustand: {count}</span>
-        <br />
-        <button type="button" onClick={() => void incrementCount()}>
-          Increment
-        </button>
-        <br />
-        <button type="button" onClick={() => void decrementCount()}>
-          Decrement
-        </button>
+    <>
+      <div className="px-4">
+        <RepositoryTitle />
+        <div className="grid grid-cols-2">
+          <Sidebar />
+          {/* <RepositoryList /> */}
+        </div>
       </div>
-    </div>
+      <RepositoriesTypeDialog />
+    </>
   );
 }
