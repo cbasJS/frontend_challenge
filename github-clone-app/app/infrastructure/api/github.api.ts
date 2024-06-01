@@ -7,7 +7,7 @@ import { Octokit } from "octokit";
 
 const octokit = new Octokit({});
 
-type Params = { type: RepositoryTypeString }
+type Params = { type: RepositoryTypeString, page: string }
 
 async function getData(params?: Params): Promise<any> {
   try {

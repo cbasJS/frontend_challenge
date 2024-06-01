@@ -18,7 +18,7 @@ const HomePageContent: React.FC<Props> = ({ response, isLoading }) => {
         <RepositoryTitle />
         <div className="md:flex">
           <Sidebar />
-          <RepositoriesList data={response?.data} loading={isLoading} />
+          <RepositoriesList response={response} loading={isLoading} />
         </div>
       </div>
       <RepositoriesTypeDialog />

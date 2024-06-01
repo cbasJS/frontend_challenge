@@ -13,8 +13,7 @@ export const GET_OPTIONS: RequestInit = {
 export const DEFAULT_PARAMS = {
   sort: 'updated',
   per_page: '30',
-  direction: 'desc',
-  page: "3"
+  direction: 'desc'
 }
 
 export const GET_REPOS_LINK = `GET ${process.env.NEXT_PUBLIC_API_URL}/orgs/${process.env.NEXT_PUBLIC_GITHUB_API_ORG}/repos` as string
