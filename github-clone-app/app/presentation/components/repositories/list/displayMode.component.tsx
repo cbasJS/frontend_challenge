@@ -5,17 +5,19 @@ import {
   ListboxOptions,
   Transition,
 } from "@headlessui/react";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import ArrowDown from "../../icons/arrowDown.icon";
+import {
+  displayModes,
+  type DisplayModesType,
+} from "@/application/constants/general.constants";
 
-const modes = [
-  { id: 1, name: "Default" },
-  { id: 2, name: "Compact" },
-];
+type Props = {
+  selected: DisplayModesType;
+  setSelected: Dispatch<SetStateAction<DisplayModesType>>;
+};
 
-const DisplayMode = () => {
-  const [selected, setSelected] = useState(modes[0]);
-
+const DisplayMode: React.FC<Props> = ({ selected, setSelected }) => {
   return (
     <Listbox value={selected} onChange={setSelected}>
       <ListboxButton className="relative block py-1.5 pr-5 pl-3 text-left text-sm/6">
@@ -31,7 +33,7 @@ const DisplayMode = () => {
           anchor="bottom"
           className="w-28 rounded-sm border border-border-color p-1 [--anchor-gap:var(--spacing-1)] focus:outline-none bg-header-color dark:bg-dialog-color-dark dark:border-border-color-dark"
         >
-          {modes.map((mode) => (
+          {displayModes.map((mode) => (
             <ListboxOption
               key={mode.name}
               value={mode}
