@@ -5,7 +5,7 @@ import githubLangColors from '../../../github-lang-colors.json'
 export const repositoryDataAdapter = (response: any): GithubRepository => {
   const langColor: { [key: string]: string | null } = githubLangColors
 
-  const data = response.data.map((_) => ({
+  const data = response.data.map((_: any) => ({
     name: _.name,
     description: _.description,
     isPrivate: _.private,
