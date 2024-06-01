@@ -7,7 +7,7 @@ type Props = {
 
 const Paginator: React.FC<Props> = ({ pageInfo }) => {
   const { changeCurrentPage } = useAppStore((state) => state);
-  console.log(!pageInfo.prevPage);
+
   return (
     <div className="w-full flex justify-end mt-4">
       <div className="flex">
