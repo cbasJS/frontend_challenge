@@ -1,9 +1,9 @@
-import { GithubRepository } from "@/domain/entities/githubApi.entity";
+import { GithubRepositoryData } from "@/domain/entities/githubApi.entity";
 import RepositoryListSpecs from "./specs.component";
 import WrapperElement from "./wrapperElement.component";
 
 type Props = {
-  element: GithubRepository;
+  element: GithubRepositoryData;
 };
 
 const DefaultElement: React.FC<Props> = ({ element }) => {

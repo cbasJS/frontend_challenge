@@ -1,10 +1,10 @@
-import { GithubRepository } from "@/domain/entities/githubApi.entity";
+import { GithubRepositoryData } from "@/domain/entities/githubApi.entity";
 import WrapperElement from "./wrapperElement.component";
 import RepositoryListSpecs from "./specs.component";
 import RepositoryIcon from "../../icons/repository.icon";
 
 type Props = {
-  element: GithubRepository;
+  element: GithubRepositoryData;
 };
 
 const CompactElement: React.FC<Props> = ({ element }) => {

@@ -11,5 +11,6 @@ export const createAppStore = (
     changeRepositoryType: (type) => set(() => ({ repositoryType: type })),
     openRepositoriesTypeDialog: () => set(() => ({ isRepositoriesTypeDialogOpen: true })),
     closeRepositoriesTypeDialog: () => set(() => ({ isRepositoriesTypeDialogOpen: false })),
+    changeCurrentPage: (page) => set(() => ({ currentPage: page })),
   }))
 }

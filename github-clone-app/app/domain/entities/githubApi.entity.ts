@@ -13,9 +13,19 @@ export type GithubRepositorySpecs = {
   }
 }
 
-export interface GithubRepository {
+export type GithubRepositoryData = {
   name: string
   description: string
   isPrivate: boolean
   specs: GithubRepositorySpecs
+}
+
+export type GithubRepositoryPageInfo = {
+  nextPage: string | null
+  prevPage: string | null
+}
+
+export interface GithubRepository {
+  data: GithubRepositoryData[]
+  pageInfo: GithubRepositoryPageInfo
 }
