@@ -1,14 +1,10 @@
 import getRepositories from "@/infrastructure/api/github.api";
-import RepositoriesTypeDialog from "@/presentation/components/dialog/repositoriesType.dialog";
 import { useAppStore } from "@/presentation/hooks/appStore.hook";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 import Router from "next/router";
-import {
-  RepositoriesList,
-  RepositoryTitle,
-  Sidebar,
-} from "@/presentation/components/withoutSSR/noSSR.component";
+
+import HomePageContent from "@/presentation/components/home/content.component";
 
 export default function Page() {
   const { repositoryType } = useAppStore((state) => state);
@@ -25,16 +21,5 @@ export default function Page() {
     refetch();
   }, [repositoryType, refetch, queryClient]);
 
-  return (
-    <>
-      <div className="px-4">
-        <RepositoryTitle />
-        <div className="md:flex">
-          <Sidebar />
-          <RepositoriesList data={data} loading={isLoading || isFetching} />
-        </div>
-      </div>
-      <RepositoriesTypeDialog />
-    </>
-  );
+  return <HomePageContent data={data} isLoading={isLoading || isFetching} />;
 }
