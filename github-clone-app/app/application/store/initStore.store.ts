@@ -3,5 +3,5 @@ import { urlTypeParams } from "../utils/general.util"
 
 
 export const initAppStore = (): AppState => {
-  return { repositoryType: urlTypeParams(), isRepositoriesTypeDialogOpen: false }
+  return { repositoryType: urlTypeParams(), isRepositoriesTypeDialogOpen: false, currentPage: "1" }
 }

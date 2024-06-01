@@ -57,3 +57,9 @@ export const urlTypeParams = (): RepositoryTypeString => {
   const urlParams = new URLSearchParams(queryString || '')
   return Object.values(RepositoryType).find((val) => val === urlParams.get('type')) || 'all'
 }
+
+export const getParam = (url: string, paramName: string): string | null => {
+  const urlSearchParams = new URLSearchParams(url);
+  const param = urlSearchParams.get(paramName);
+  return param
+}
