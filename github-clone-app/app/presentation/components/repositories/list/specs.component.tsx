@@ -21,17 +21,31 @@ const icon: { [key in RepositorySpecs]: ReactNode | null } = {
 
 type Props = {
   specs: GithubRepositorySpecs;
+  isCompactMode?: boolean;
+  className?: string;
 };
 
-const RepositoryListSpecs: React.FC<Props> = ({ specs }) => {
+const RepositoryListSpecs: React.FC<Props> = ({
+  specs,
+  isCompactMode,
+  className = "",
+}) => {
   const specEntries = Object.entries(specs) as [
     RepositorySpecsString,
     (typeof specs)[keyof typeof specs]
   ][];
   return (
-    <div className="text-[#636C76] fill-[#636C76] text-sm md:text-base flex items-center justify-start gap-x-2 flex-wrap">
+    <div
+      className={`text-[#636C76] fill-[#636C76] text-sm md:text-base flex items-center justify-start gap-x-2 flex-wrap`.concat(
+        className
+      )}
+    >
       {specEntries.map((spec, index) => {
         if (!spec[1]) return null;
+
+        if (isCompactMode && spec[0] === "license") return null;
+        if (isCompactMode && spec[0] === "updatedAt") return null;
+        if (isCompactMode && spec[0] === "issues") return null;
 
         if (spec[0] === "language" && spec[1]) {
           return (
