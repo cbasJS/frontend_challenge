@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html lang="es">
       <Head>
-        <meta name="description" content="Free Web tutorials" />
+        <meta name="description" content="Small GitHub Clone web app " />
       </Head>
       <body>
         <Main />
