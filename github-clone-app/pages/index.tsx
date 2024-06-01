@@ -21,5 +21,7 @@ export default function Page() {
     refetch();
   }, [repositoryType, refetch, queryClient]);
 
-  return <HomePageContent data={data} isLoading={isLoading || isFetching} />;
+  return (
+    <HomePageContent response={data} isLoading={isLoading || isFetching} />
+  );
 }

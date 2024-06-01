@@ -1,7 +1,7 @@
 import { useAppStore } from "@/presentation/hooks/appStore.hook";
 import DefaultElement from "./defaultElement.component";
 import DisplayMode from "./displayMode.component";
-import { GithubRepository } from "@/domain/entities/githubApi.entity";
+import { GithubRepositoryData } from "@/domain/entities/githubApi.entity";
 import SpinnerIcon from "../../icons/spinner.icon";
 import { useState } from "react";
 import {
@@ -11,7 +11,7 @@ import {
 import CompactElement from "./compactElement.component";
 
 type Props = {
-  data?: GithubRepository[];
+  data?: GithubRepositoryData[];
   loading: boolean;
 };
 
@@ -30,9 +30,11 @@ const RepositoriesList: React.FC<Props> = ({ data, loading }) => {
       </h2>
       <div className="w-full border border-border-color dark:border-border-color-dark rounded-md">
         <div className="w-full bg-header-color dark:bg-dialog-color-dark p-4 flex items-center justify-between">
+          {/* @ts-ignore */}
           <h4 className="font-semibold">{data.length} repositories</h4>
           <DisplayMode selected={displayMode} setSelected={setDisplayMode} />
         </div>
+        {/* @ts-ignore */}
         {data.map((el, index) => {
           if (displayMode.name === "Compact") {
             return <CompactElement key={index} element={el} />;
