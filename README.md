@@ -1,37 +1,183 @@
-# Frontend Technical Assessment
-Welcome to FinSphera Frontend Technical Assessment. This is a challenge to evaluate your skills as a frontend developer. The challenge is divided in two parts, the development of a small application and the definition of a hypothetical architecture for a bigger one. The assessment is structured to give you the freedom to show your skills and creativity as a developer 🧠.
+# Github Repositories Landing Page Challenge
 
-## Part 1. Develop a small application.
- As a part of the challenge, you will be required to build some of the followings projects. ONLY ONE OF THEM.
-1. A movie landing page that shows a list of movies and their details. You can use the movie database API (https://www.themoviedb.org/documentation/api) to get the data or any other API of your preference.
-Example:
-![alt text](image.png)
+![Github Clone App Gif](github-clone-app.gif)
 
-2. A GitHub clone page that shows a list of repositories and their details. Consume from the GitHub API.
-Example:
-![alt text](image-1.png)
+The frontend web application is a Github clone developed with [Next.js](https://nextjs.org/), [Zustand](https://zustand-demo.pmnd.rs/), [TypeScript](https://www.typescriptlang.org/) and [Tailwind CSS](https://tailwindui.com/) as core technologies. Its purpose is to display a list of repositories and their details based on a specific organization, in this case, Facebook. The application content data was consumed through the [Github API Rest](https://docs.github.com/es/rest?apiVersion=2022-11-28).
 
-The project should be built using React or Next.js and will have to follow the following aspects:
-1. Fork this repository.
-2. Built from scratch: You have the opportunity to create the repository from scratch or using a template, but the code should be yours. As a personal recommendation, I suggest using Vite.
-3. Feel free to use any library or framework that you consider necessary to complete the project as well the CSS technology of your preference.
-4. Implement the features that you consider necessary for the UI/UX.
-5. Deploy the project on the platform of your choice, and finally give us the link to your public repository and of the deployed project.
+## Table of content
 
-> The assestment will have a limited time to be completed. I suggest to organize to complete the aspects to be evaluated over seek the perfect project. You can document the points that you would have added if you had more time.
+- [Deployment](#deployment)
+- [Features](#features)
+- [Settings](#settings)
+- [Installation](#installation)
+- [How to build](#how-to-build)
+- [Project structure](#project-structure)
+- [Scalability considerations](#scalability-considerations)
+- [Conclusion](#conclusion)
+- [Contact](#contact)
+- [Bonus](#bonus)
+- [License](#license)
 
-### Aspects to be evaluated
-* The correct handling of git workflow, good organization of the commits and the branches.
-* The quality of the code, following the best practices and the patterns of the language.
-* The quality of the user interface, the user experience and the responsiveness of the application it's a crucial aspect.
-* Documentation of the project. You have the opportunity to show here how organized you are. Don't miss the opportunity 😉.
-* How you handle the API requests and the data that you get from them.
-* The management of the data and the state of the application. You can use the tool that feels more comfortable, whatever it is Context API, Redux, Recoil, etc. But show understanding of their concepts.
-* A small demonstration of testing. It's not necessary to test all the components, but at least show how you would test a component or a hook.
-* If you feel short of time, please document the steps that you would have taken to complete the project or what you would have added.
-* Creativity. You have the freedom to add any feature, pattern, library, or technique that you feel shows your skills as a developer.
-* Extra points if you implement a simple auth formulary, doesn't matter if it's with dummy data, but implement good practices of forms validation.
-* Typescript is a must.
+## Deployment
 
-## Part 2. Architecture
-* As the second part, you have to write in a markdown file into the root of the project, how you will handle a hypothetical situation where you have to scale the application to a bigger one. For example. How you will handle the state, components, routing system or even how it will be integrated with the backend or cloud services.
+This app was deployed on [Amazon S3 (Simple Storage Service)](https://aws.amazon.com/es/s3/) and [Amazon Cloudfront](https://aws.amazon.com/es/cloudfront/). You can do live tests at the following link.
+
+http://d40nwhaxs1dz1.cloudfront.net/?type=all
+
+## Features
+
+_Fetch and display repositories:_ The landing page fetches and displays a list of repositories from a specified Github organization.
+
+_Responsive design:_ The page is designed to be responsive and work well on various devices.
+
+_Clean and structured code:_ The solution is designed with modularity and reusability in mind.
+
+## Settings
+
+If you want to run the app locally you need to config the environment variables as first step:
+
+```bash
+# Create a .env file in the project root with the following variables
+
+NEXT_PUBLIC_API_URL=https://api.github.com
+NEXT_PUBLIC_GITHUB_TOKEN=<your-github-token>
+NEXT_PUBLIC_GITHUB_API_ORG=facebook
+NEXT_PUBLIC_GITHUB_API_VERSION=2022-11-28
+NEXT_PUBLIC_GITHUB_API_ACCEPT=application/vnd.github+json
+```
+
+These variables are mainly used for API authentication handling. [Read more about Github API Rest Authentication](https://docs.github.com/es/rest/authentication/authenticating-to-the-rest-api?apiVersion=2022-11-28).
+
+## Installation
+
+- ### Prerequisites
+For better performance I highly recommend you:
+
+Node.js (v20.x or higher)
+
+npm (v10.x or higher)
+
+```bash
+# Clon the repository
+git clone https://github.com/cbasJS/frontend_challenge.git
+
+# Go to the folder
+cd github-clone-app
+
+# Install the dependencies
+npm install
+
+# Run locally
+npm run dev
+```
+
+## How to build
+
+```bash
+# Compile the project
+npm run build
+
+# Run the server
+npm reun start
+```
+
+## Project structure
+
+The structure of this application was made based on [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture) and [SOLID principles](https://www.freecodecamp.org/espanol/news/los-principios-solid-explicados-en-espanol/).
+
+```bash
+github-clone-app/
+├── app/
+│   ├── application/
+│   ├── domain/
+│   ├── infrastructure/
+│   ├── presentation/
+│   ├── favicon.icon
+│   └── globals.css
+├── pages/
+├── public/
+├── .env
+├── .env.template
+├── .eslintrc.json
+├── .gitignore
+├── github-lang-colors.json
+├── next.config.mjs
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── tailwind.config.js
+└── tsconfig.json
+```
+
+### Main folders and files
+- _app/application:_ Zustand config for global state management.
+
+- _app/domain:_ TypeScript type definitions to ensure typed development and avoid common errors.
+
+- _app/infrastructure:_ Services for interaction with the Github API.
+
+- _app/presentation:_ Reusable React components for the UI.
+
+- _/pages:_ Contains the application pages, taking advantage of Next.js file-based routing.
+
+## Scalability Considerations
+
+If this application needed to be scaled, here are some improvements that could be made:
+
+### 1. Application Optimization
+
+A. Server-Side Rendering (SSR) and Static Site Generation (SSG)
+
+- _SSR:_ Use Server-Side Rendering for pages that require dynamic data on each request.
+
+- _SSG:_ Use Static Site Generation for pages that do not change frequently, generating static pages at build time.
+
+B. Minification and Compression
+
+- Ensure CSS and JavaScript files are minified.
+
+- Use gzip or Brotli compression to reduce the size of files sent to clients.
+
+### 2. Traffic Management and Scalability
+
+A. Horizontal Scalability
+
+- _Auto Scaling:_ Use Auto Scaling groups in AWS to automatically handle increases in traffic.
+
+- _Load Balancer:_ Implement a Load Balancer (Elastic Load Balancer) to distribute traffic across multiple instances.
+
+B. Caching and CDN
+
+- _Caching in CloudFront_: Configure cache policies in CloudFront to reduce load on the origin server and improve response times.
+
+### 3. Monitoring and Maintenance
+
+A. Monitoring
+
+- Use monitoring tools like Sentry to monitor the application's performance.
+
+- Set up Google Analytics to visualize key metrics.
+
+B. Maintenance
+
+- Perform regular stress testing to identify and address bottlenecks.
+
+- Ensure regular updates of dependencies and security patches.
+
+## Conclusion
+
+This project demonstrates the ability to create a functional, well-documented, and scalable web application. I hope you enjoy reviewing it as much as I enjoyed building it!
+
+## Contact
+
+For any questions or further information, please contact:
+
+- [LinkedIn](https://www.linkedin.com/in/sebastian-martha-963877152/)
+
+## Bonus
+
+I created a small application with the MERN Stack for an authentication form. Please check the [_/auth-formulary_](https://github.com/cbasJS/frontend_challenge/tree/main/auth-formulary) folder to learn more.
+
+## License
+
+This project is under the ISC License.
