@@ -12,7 +12,7 @@ const RepositoriesFilter = () => {
     changeRepositorySort,
     changeRepositorySortDirection,
   } = useAppStore((state) => state);
-  console.log(githubAPISortOptions.filter((val) => val.value === sortBy)[0]);
+
   return (
     <div className="w-full flex items-center justify-end">
       <div className="flex items-center mr-3">
