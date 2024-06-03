@@ -37,6 +37,8 @@ _Paginate data per page:_ Each page is paginated by 30 elements per page, you ca
 
 _View each row by default mode or compact mode:_ Using a select element you can change the type of view of each row
 
+_Repositories data filter:_ You can filter the data of the repositories by `<"created" | "full_name" | "pushed" | "updated">` and ascending or descending
+
 _Responsive design:_ The page is designed to be responsive and work well on various devices.
 
 _Clean and structured code:_ The solution is designed with modularity and reusability in mind.
