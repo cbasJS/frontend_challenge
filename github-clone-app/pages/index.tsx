@@ -7,14 +7,24 @@ import Router from "next/router";
 import HomePageContent from "@/presentation/components/home/content.component";
 
 export default function Page() {
-  const { repositoryType, currentPage, changeCurrentPage } = useAppStore(
-    (state) => state
-  );
+  const {
+    repositoryType,
+    currentPage,
+    changeCurrentPage,
+    sortBy,
+    sortDirection,
+  } = useAppStore((state) => state);
+
   const queryClient = useQueryClient();
 
   const { refetch, data, isLoading, isFetching } = useQuery({
     queryFn: async () =>
-      await getRepositories({ type: repositoryType, page: currentPage }),
+      await getRepositories({
+        type: repositoryType,
+        page: currentPage,
+        sort: sortBy,
+        direction: sortDirection,
+      }),
     queryKey: ["repositories"],
   });
 
@@ -30,7 +40,7 @@ export default function Page() {
     queryClient.clear();
     refetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage]);
+  }, [currentPage, sortBy, sortDirection]);
 
   return (
     <HomePageContent response={data} isLoading={isLoading || isFetching} />
