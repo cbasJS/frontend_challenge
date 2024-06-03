@@ -11,6 +11,7 @@ The frontend web application is a Github clone developed with [Next.js](https://
 - [Settings](#settings)
 - [Installation](#installation)
 - [How to build](#how-to-build)
+- [Testing](#testing)
 - [Project structure](#project-structure)
 - [Scalability considerations](#scalability-considerations)
 - [Conclusion](#conclusion)
@@ -81,12 +82,28 @@ npm run build
 npm reun start
 ```
 
+## Testing
+
+Although optional, unit tests have been included to ensure code quality and reliability. Tests are located in the /tests directory and can be run with:
+
+```bash
+# Run all tests:
+npm run test
+
+# Run watch mode
+npm run test:watch
+
+# Run collect coverage
+npm run coverage
+```
+
 ## Project structure
 
 The structure of this application was made based on [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture) and [SOLID principles](https://www.freecodecamp.org/espanol/news/los-principios-solid-explicados-en-espanol/).
 
 ```bash
 github-clone-app/
+├── __tests__
 ├── app/
 │   ├── application/
 │   ├── domain/
@@ -110,6 +127,8 @@ github-clone-app/
 ```
 
 ### Main folders and files
+- _tests:_ Contains unit tests.
+
 - _app/application:_ Zustand config for global state management.
 
 - _app/domain:_ TypeScript type definitions to ensure typed development and avoid common errors.
