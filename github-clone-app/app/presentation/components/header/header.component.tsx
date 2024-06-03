@@ -3,7 +3,10 @@ import RepositoryIcon from "../icons/repository.icon";
 
 const Header = () => {
   return (
-    <header className="w-full bg-header-color dark:bg-header-color-dark border-b border-b-border-color dark:border-b-border-color-dark">
+    <header
+      className="w-full bg-header-color dark:bg-header-color-dark border-b border-b-border-color dark:border-b-border-color-dark"
+      data-testid="header"
+    >
       <div className="px-4 py-6 flex gap-x-4 items-center">
         <span>
           <GithubIcon />
