@@ -11,6 +11,7 @@ import {
 import CompactElement from "./compactElement.component";
 import Paginator from "../../paginator/index.component";
 import React from "react";
+import RepositoriesFilter from "../filter/filter.component";
 
 type Props = {
   response?: GithubRepository;
@@ -33,19 +34,22 @@ const RepositoriesList: React.FC<Props> = ({ response, loading }) => {
             {repositoryType}
           </h2>
           <div className="w-full border border-border-color dark:border-border-color-dark rounded-md">
-            <div className="w-full bg-header-color dark:bg-dialog-color-dark p-4 flex items-center justify-between">
-              <h4 className="font-semibold">
-                {/* @ts-ignore */}
-                {response.data.length} repositories in page
-              </h4>
-              <DisplayMode
-                selected={displayMode}
-                setSelected={setDisplayMode}
-              />
+            <div className="w-full bg-header-color dark:bg-dialog-color-dark p-4">
+              <div className="flex items-center justify-between">
+                <h4 className="font-semibold">
+                  {/* @ts-ignore */}
+                  {response.data.length} repositories in page
+                </h4>
+                <DisplayMode
+                  selected={displayMode}
+                  setSelected={setDisplayMode}
+                />
+              </div>
+              <RepositoriesFilter />
             </div>
             {/* @ts-ignore */}
             {response.data.map((el, index) => {
-              if (displayMode.name === "Compact") {
+              if (displayMode.value === "Compact") {
                 return <CompactElement key={index} element={el} />;
               } else {
                 return <DefaultElement key={index} element={el} />;
