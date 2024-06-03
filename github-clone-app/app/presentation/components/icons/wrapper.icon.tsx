@@ -12,6 +12,7 @@ const WrapperIcon: React.FC<Props> = ({ children, ...props }) => {
       width="16"
       height="16"
       className="dark:fill-icon-dark-color"
+      data-testid="wrapper-icon"
       {...props}
     >
       {children}
