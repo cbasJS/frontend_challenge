@@ -1,15 +1,13 @@
 import { DEFAULT_PARAMS, GET_REPOS_LINK, HEADERS, NEXT_PATTERN, PREV_PATTERN } from "@/application/constants/githubApi.constants";
 import { getParam } from "@/application/utils/general.util";
 import { repositoryDataAdapter } from "@/domain/adapters/githubApi.adapter";
-import { GithubRepository } from "@/domain/entities/githubApi.entity";
-import { RepositoryTypeString } from "@/domain/enums/githubApi.enum";
+import type { GithubAPIParams, GithubRepository } from "@/domain/entities/githubApi.entity";
 import { Octokit } from "octokit";
 
 const octokit = new Octokit({});
 
-type Params = { type: RepositoryTypeString, page: string }
 
-async function getData(params?: Params): Promise<any> {
+async function getData(params: GithubAPIParams): Promise<any> {
   try {
     const response = await octokit.request(GET_REPOS_LINK, {
       ...DEFAULT_PARAMS,
@@ -39,7 +37,7 @@ async function getData(params?: Params): Promise<any> {
   }
 }
 
-export default async function getRepositories(params?: Params): Promise<GithubRepository> {
+export default async function getRepositories(params: GithubAPIParams): Promise<GithubRepository> {
   const data = await getData(params);
   return repositoryDataAdapter(data);
 }
