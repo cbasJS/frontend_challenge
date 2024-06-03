@@ -12,5 +12,7 @@ export const createAppStore = (
     openRepositoriesTypeDialog: () => set(() => ({ isRepositoriesTypeDialogOpen: true })),
     closeRepositoriesTypeDialog: () => set(() => ({ isRepositoriesTypeDialogOpen: false })),
     changeCurrentPage: (page) => set(() => ({ currentPage: page })),
+    changeRepositorySort: (value) => set(() => ({ sortBy: value, currentPage: "1" })),
+    changeRepositorySortDirection: (value) => set(() => ({ sortDirection: value, currentPage: "1" })),
   }))
 }
