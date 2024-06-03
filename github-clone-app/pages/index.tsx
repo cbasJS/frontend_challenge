@@ -7,13 +7,9 @@ import Router from "next/router";
 import HomePageContent from "@/presentation/components/home/content.component";
 
 export default function Page() {
-  const {
-    repositoryType,
-    currentPage,
-    changeCurrentPage,
-    sortBy,
-    sortDirection,
-  } = useAppStore((state) => state);
+  const { repositoryType, currentPage, sortBy, sortDirection } = useAppStore(
+    (state) => state
+  );
 
   const queryClient = useQueryClient();
 
@@ -29,7 +25,6 @@ export default function Page() {
   });
 
   useEffect(() => {
-    changeCurrentPage("1");
     Router.push("/", { query: { type: repositoryType } });
     queryClient.clear();
     refetch();
