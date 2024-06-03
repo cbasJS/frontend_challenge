@@ -21,9 +21,10 @@ The frontend web application is a Github clone developed with [Next.js](https://
 
 ## Deployment
 
-This app was deployed on [Amazon S3 (Simple Storage Service)](https://aws.amazon.com/es/s3/) and [Amazon Cloudfront](https://aws.amazon.com/es/cloudfront/). You can do live tests at the following link.
+This app was deployed on [Amazon S3 (Simple Storage Service)](https://aws.amazon.com/es/s3/) and [Amazon Cloudfront](https://aws.amazon.com/es/cloudfront/).
 
-http://d40nwhaxs1dz1.cloudfront.net/?type=all
+### Live Demo Link
+- http://d40nwhaxs1dz1.cloudfront.net/?type=all
 
 ## Features
 
