@@ -1,3 +1,5 @@
+import type { RepositoryTypeString, RepositorySortDirectionString, RepositorySortString } from "../enums/githubApi.enum"
+
 export type GithubRepositorySpecs = {
   license: string | null
   language: {
@@ -23,6 +25,13 @@ export type GithubRepositoryData = {
 export type GithubRepositoryPageInfo = {
   nextPage: string | null
   prevPage: string | null
+}
+
+export type GithubAPIParams = {
+  type: RepositoryTypeString,
+  page: string
+  sort: RepositorySortString
+  direction: RepositorySortDirectionString
 }
 
 export interface GithubRepository {
