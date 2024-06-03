@@ -8,9 +8,11 @@ export const createAppStore = (
 ) => {
   return createStore<AppStore>()((set) => ({
     ...initState,
-    changeRepositoryType: (type) => set(() => ({ repositoryType: type })),
+    changeRepositoryType: (type) => set(() => ({ repositoryType: type, currentPage: "1" })),
     openRepositoriesTypeDialog: () => set(() => ({ isRepositoriesTypeDialogOpen: true })),
     closeRepositoriesTypeDialog: () => set(() => ({ isRepositoriesTypeDialogOpen: false })),
     changeCurrentPage: (page) => set(() => ({ currentPage: page })),
+    changeRepositorySort: (value) => set(() => ({ sortBy: value, currentPage: "1" })),
+    changeRepositorySortDirection: (value) => set(() => ({ sortDirection: value, currentPage: "1" })),
   }))
 }

@@ -19,3 +19,19 @@ export enum RepositorySpecs {
 }
 
 export type RepositorySpecsString = keyof typeof RepositorySpecs;
+
+export enum RepositorySort {
+  created = "created",
+  updated = "updated",
+  pushed = "pushed",
+  full_name = "full_name"
+}
+
+export type RepositorySortString = keyof typeof RepositorySort;
+
+export enum RepositorySortDirection {
+  asc = 'asc',
+  desc = 'desc'
+}
+
+export type RepositorySortDirectionString = keyof typeof RepositorySortDirection;

@@ -21,9 +21,10 @@ The frontend web application is a Github clone developed with [Next.js](https://
 
 ## Deployment
 
-This app was deployed on [Amazon S3 (Simple Storage Service)](https://aws.amazon.com/es/s3/) and [Amazon Cloudfront](https://aws.amazon.com/es/cloudfront/). You can do live tests at the following link.
+This app was deployed on [Amazon S3 (Simple Storage Service)](https://aws.amazon.com/es/s3/) and [Amazon Cloudfront](https://aws.amazon.com/es/cloudfront/).
 
-http://d40nwhaxs1dz1.cloudfront.net/?type=all
+### Live Demo Link
+- http://d40nwhaxs1dz1.cloudfront.net/?type=all
 
 ## Features
 
@@ -36,6 +37,8 @@ _Navigate through repository types:_ You can navigate through the types of repos
 _Paginate data per page:_ Each page is paginated by 30 elements per page, you can go to the next page or return to the previous one.
 
 _View each row by default mode or compact mode:_ Using a select element you can change the type of view of each row
+
+_Repositories data filter:_ You can filter the data of the repositories by `<"created" | "full_name" | "pushed" | "updated">` and ascending or descending
 
 _Responsive design:_ The page is designed to be responsive and work well on various devices.
 
