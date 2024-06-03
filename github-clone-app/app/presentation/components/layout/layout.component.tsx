@@ -11,7 +11,7 @@ type Props = {
 
 const Layout: React.FC<Props> = ({ children }) => {
   return (
-    <main className={inter.className}>
+    <main className={inter.className} data-testid="layout-app">
       <Header />
       {children}
       <Footer />

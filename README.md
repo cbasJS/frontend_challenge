@@ -11,6 +11,7 @@ The frontend web application is a Github clone developed with [Next.js](https://
 - [Settings](#settings)
 - [Installation](#installation)
 - [How to build](#how-to-build)
+- [Testing](#testing)
 - [Project structure](#project-structure)
 - [Scalability considerations](#scalability-considerations)
 - [Conclusion](#conclusion)
@@ -27,6 +28,14 @@ http://d40nwhaxs1dz1.cloudfront.net/?type=all
 ## Features
 
 _Fetch and display repositories:_ The landing page fetches and displays a list of repositories from a specified Github organization.
+
+_Get type of repositories by url param:_ The type of repository to display can be defined using the parameter `?type=<"all" | "public" | "sources" | "forks" | "archived" | "template">`
+
+_Navigate through repository types:_ You can navigate through the types of repositories using a sidebar on desktop and a navigation menu on mobile.
+
+_Paginate data per page:_ Each page is paginated by 30 elements per page, you can go to the next page or return to the previous one.
+
+_View each row by default mode or compact mode:_ Using a select element you can change the type of view of each row
 
 _Responsive design:_ The page is designed to be responsive and work well on various devices.
 
@@ -81,12 +90,28 @@ npm run build
 npm reun start
 ```
 
+## Testing
+
+Although optional, unit tests have been included to ensure code quality and reliability. Tests are located in the /tests directory and can be run with:
+
+```bash
+# Run all tests:
+npm run test
+
+# Run watch mode
+npm run test:watch
+
+# Run collect coverage
+npm run coverage
+```
+
 ## Project structure
 
 The structure of this application was made based on [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture) and [SOLID principles](https://www.freecodecamp.org/espanol/news/los-principios-solid-explicados-en-espanol/).
 
 ```bash
 github-clone-app/
+├── __tests__
 ├── app/
 │   ├── application/
 │   ├── domain/
@@ -110,6 +135,8 @@ github-clone-app/
 ```
 
 ### Main folders and files
+- _tests:_ Contains unit tests.
+
 - _app/application:_ Zustand config for global state management.
 
 - _app/domain:_ TypeScript type definitions to ensure typed development and avoid common errors.

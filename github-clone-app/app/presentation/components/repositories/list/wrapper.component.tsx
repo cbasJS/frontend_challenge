@@ -9,7 +9,7 @@ import {
   displayModes,
 } from "@/application/constants/general.constants";
 import CompactElement from "./compactElement.component";
-import Paginator from "../../paginator/index.paginator";
+import Paginator from "../../paginator/index.component";
 import React from "react";
 
 type Props = {
