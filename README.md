@@ -29,6 +29,14 @@ http://d40nwhaxs1dz1.cloudfront.net/?type=all
 
 _Fetch and display repositories:_ The landing page fetches and displays a list of repositories from a specified Github organization.
 
+_Get type of repositories by url param:_ The type of repository to display can be defined using the parameter `?type=<"all" | "public" | "sources" | "forks" | "archived" | "template">`
+
+_Navigate through repository types:_ You can navigate through the types of repositories using a sidebar on desktop and a navigation menu on mobile.
+
+_Paginate data per page:_ Each page is paginated by 30 elements per page, you can go to the next page or return to the previous one.
+
+_View each row by default mode or compact mode:_ Using a select element you can change the type of view of each row
+
 _Responsive design:_ The page is designed to be responsive and work well on various devices.
 
 _Clean and structured code:_ The solution is designed with modularity and reusability in mind.
